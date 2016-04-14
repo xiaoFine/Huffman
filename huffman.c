@@ -21,31 +21,32 @@
 #define MAX_SYMBOLS 256
 typedef struct huffman_node_tag
 {
-	unsigned char isLeaf;
-	unsigned long count;
-	struct huffman_node_tag *parent;
+	unsigned char isLeaf; //是否为叶子节点
+	unsigned long count;  //源符号出现的次数
+	struct huffman_node_tag *parent;  //父节点指针
 
 	union
 	{
 		struct
 		{
 			struct huffman_node_tag *zero, *one;
+			//子节点指针，zero表示编码时赋0，one表示编码时赋1
 		};
-		unsigned char symbol;
+		unsigned char symbol; //源符号
 	};
 } huffman_node;
 
 typedef struct huffman_code
 {
 	/* The length of this code in bits. */
-	unsigned long numbits;
+	unsigned long numbits; //以bit为单位的码字长度
 
 	/* The bits that make up this code. The first
 	   bit is at position 0 in bits[0]. The second
 	   bit is at position 1 in bits[0]. The eighth
 	   bit is at position 7 in bits[0]. The ninth
 	   bit is at position 0 in bits[1]. */
-	unsigned char *bits;
+	unsigned char *bits;  //码字串
 } huffman_code;
 
 
